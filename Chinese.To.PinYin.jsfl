@@ -1,16 +1,14 @@
-﻿var dom = fl.getDocumentDOM();
-var items_a = dom.library.items;
+var dom = fl.getDocumentDOM();
+var items_a = dom.library.getSelectedItems();
 var req = /[\u4e00-\u9fa5]/g;
-//fl.trace("items_a:"+items_a[0].name);
-//fl.trace(typeof(items_a));
 edit();
 function edit() {
 	for (var i = 0, j=items_a.length; i < j; i+=1) {
 		var Nname = items_a[i].name.split('/').pop();
 		var chinese = Nname.match(req);
-		if (chinese == null || chinese.length <= 0) {			
+		if (chinese == null || chinese.length <= 0) {
 			continue;
-		} else {
+		} else {			
 			items_a[i].name = ChineseToPinYin(Nname);			
 		}
 	}
